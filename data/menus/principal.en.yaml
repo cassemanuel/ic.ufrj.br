@@ -28,6 +28,7 @@
     - name: Graduate Program
       children:
         - name: PPGI
+          url: /en/info/ppgi/
 
 - name: Opportunities
   children:
