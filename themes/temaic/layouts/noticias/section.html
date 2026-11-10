@@ -1,0 +1,41 @@
+{{ define "main" }}
+  {{ $noticias := where site.RegularPages "Section" "noticias" }}
+  {{ $paginator := .Paginate $noticias.ByDate.Reverse }}
+  <article>
+    <div class="masshead"><h1>{{ .Title }}</h1></div>
+    {{ range $paginator.Pages }}
+      <article class="noticia">
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <small>{{ .Date | time.Format ":date_long" }}</small>
+        {{ $rawSummary := .Description | default (.Summary | plainify | htmlUnescape) }}
+        <p class="resumo-noticia">{{ $rawSummary | plainify | htmlUnescape | truncate 150 "..." }}</p>
+        <a href="{{ .RelPermalink }}" aria-label="Leia mais sobre: {{ .Title }}">Leia mais...</a>
+      </article>
+    {{ end }}
+    {{ if gt $paginator.TotalPages 1 }}
+      <nav class="paginacao-noticias" aria-label="Paginação de notícias">
+        <ul>
+          {{ if $paginator.HasPrev }}
+            <li><a href="{{ $paginator.Prev.URL }}" rel="prev">Anterior</a></li>
+          {{ else }}
+            <li><span aria-disabled="true">Anterior</span></li>
+          {{ end }}
+          {{ range $paginator.Pagers }}
+            <li>
+              {{ if eq .PageNumber $paginator.PageNumber }}
+                <span aria-current="page" aria-label="Página {{ .PageNumber }}">{{ .PageNumber }}</span>
+              {{ else }}
+                <a href="{{ .URL }}" aria-label="Página {{ .PageNumber }}">{{ .PageNumber }}</a>
+              {{ end }}
+            </li>
+          {{ end }}
+          {{ if $paginator.HasNext }}
+            <li><a href="{{ $paginator.Next.URL }}" rel="next">Próxima</a></li>
+          {{ else }}
+            <li><span aria-disabled="true">Próxima</span></li>
+          {{ end }}
+        </ul>
+      </nav>
+    {{ end }}
+  </article>
+{{ end }}

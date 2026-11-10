@@ -8,6 +8,10 @@ module:
 
 taxonomies: []
 
+pagination:
+  pagerSize: 10
+  path: page
+
 defaultContentLanguage: pt
 defaultContentLanguageInSubdir: false
 languages:

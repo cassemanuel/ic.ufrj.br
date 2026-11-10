@@ -13,9 +13,9 @@
     <article class="noticia">
       <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
       <small>{{ .Date | time.Format ":date_long" }}</small>
-      <div class="{{ if .Params.description }}descricao-noticia{{ else }}preview-noticia{{ end }}">
-        {{ .Params.description | default .Summary | plainify }}
-      </div>
+      {{ $rawSummary := .Description | default (.Summary | plainify | htmlUnescape) }}
+      <p class="resumo-noticia">{{ $rawSummary | plainify | htmlUnescape | truncate 150 "..." }}</p>
+      <a href="{{ .RelPermalink }}" aria-label="Leia mais sobre: {{ .Title }}">Leia mais...</a>
     </article>
   {{ end }}
 
