@@ -24,6 +24,11 @@ collections:
         label: Título
         widget: string
         required: true
+      - name: author
+        label: "Autor(a) / Órgão"
+        widget: string
+        required: false
+        hint: "Nome do autor ou comissão responsável pela publicação"
       - name: date
         label: Data de publicação
         widget: datetime

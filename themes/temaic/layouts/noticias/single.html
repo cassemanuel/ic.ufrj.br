@@ -2,8 +2,12 @@
   <article data-pagefind-body>
     <header class="masshead">
       <h1 data-pagefind-meta="title">{{ .Title }}</h1>
-      <p><time datetime="{{ .Date.Format "2006-01-02" }}" data-pagefind-meta="date[datetime]" data-pagefind-sort="date[datetime]">{{ .Date | time.Format ":date_long" }}</time></p>
+      <p><time style="color: #ffffff" datetime="{{ .Date.Format "2006-01-02" }}" data-pagefind-meta="date[datetime]" data-pagefind-sort="date[datetime]">{{ .Date | time.Format ":date_long" }}</time></p>
     </header>
+    {{ $image := .Resources.GetMatch "cover*" | default (.Resources.GetMatch (.Params.cover | default "")) }}
+    {{ if $image }}
+      <img src="{{ $image.RelPermalink }}" class="img-fluid rounded my-3" alt="{{ .Title }}">
+    {{ end }}
     {{ .Content }}
   </article>
 {{ end }}

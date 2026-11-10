@@ -8,6 +8,10 @@
       <article class="noticia">
         <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
         <small>{{ .Date | time.Format ":date_long" }}</small>
+        {{ $image := .Resources.GetMatch "cover*" | default (.Resources.GetMatch (.Params.cover | default "")) }}
+        {{ if $image }}
+          <img src="{{ $image.RelPermalink }}" class="img-fluid rounded my-3" alt="{{ .Title }}" loading="lazy">
+        {{ end }}
         {{ $rawSummary := .Description | default (.Summary | plainify | htmlUnescape) }}
         <p class="resumo-noticia">{{ $rawSummary | plainify | htmlUnescape | truncate 150 "..." }}</p>
         <a href="{{ .RelPermalink }}" aria-label="Leia mais sobre: {{ .Title }}">Leia mais...</a>
