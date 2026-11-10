@@ -1,0 +1,9 @@
+{{ define "main" }}
+  <link href="{{ "pagefind/pagefind-component-ui.css" | relURL }}" rel="stylesheet">
+  <script src="{{ "pagefind/pagefind-component-ui.js" | relURL }}" type="module"></script>
+  <article>
+    <header class="masshead"><h1>{{ .Title }}</h1></header>
+    {{ .Content }}
+    {{ partial "search-bar.html" . }}
+  </article>
+{{ end }}

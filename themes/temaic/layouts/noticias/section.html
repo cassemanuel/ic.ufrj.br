@@ -3,6 +3,7 @@
   {{ $paginator := .Paginate $noticias.ByDate.Reverse }}
   <article>
     <div class="masshead"><h1>{{ .Title }}</h1></div>
+    <p><a href="{{ "busca/" | relURL }}">Buscar notícias</a></p>
     {{ range $paginator.Pages }}
       <article class="noticia">
         <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>

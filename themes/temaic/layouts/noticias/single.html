@@ -1,0 +1,9 @@
+{{ define "main" }}
+  <article data-pagefind-body>
+    <header class="masshead">
+      <h1 data-pagefind-meta="title">{{ .Title }}</h1>
+      <p><time datetime="{{ .Date.Format "2006-01-02" }}" data-pagefind-meta="date[datetime]" data-pagefind-sort="date[datetime]">{{ .Date | time.Format ":date_long" }}</time></p>
+    </header>
+    {{ .Content }}
+  </article>
+{{ end }}

@@ -815,6 +815,24 @@ article > .sumario > h2 {
 	overflow-wrap: anywhere;
 }
 
+.busca-noticias {
+	--pf-font: "Open Sans", sans-serif;
+	--pf-border: var(--cor-borda-cinza);
+	--pf-input-height: 48px;
+	--pf-result-title-font-size: 20px;
+	--pf-result-excerpt-font-size: 16px;
+	--pf-summary-font-size: 16px;
+	--pf-border-radius: 10px;
+	margin: 24px 0;
+}
+
+.busca-noticias pagefind-input,
+.busca-noticias pagefind-summary,
+.busca-noticias pagefind-results {
+	display: block;
+	margin-bottom: 16px;
+}
+
 .paginacao-noticias > ul {
 	display: flex;
 	flex-wrap: wrap;
