@@ -1,0 +1,48 @@
+backend:
+  name: github
+  repo: ic-ufrj/ic.ufrj.br
+  branch: master
+
+publish_mode: editorial_workflow
+app_title: "Painel Editorial — IC/UFRJ"
+site_url: https://ic.ufrj.br
+media_folder: static/uploads
+public_folder: /uploads
+
+collections:
+  - name: noticias
+    label: Notícias
+    label_singular: Notícia
+    folder: content/pt/noticias
+    create: true
+    path: "{{year}}-{{month}}-{{day}}-{{slug}}/index"
+    format: yaml-frontmatter
+    media_folder: ""
+    public_folder: ""
+    fields:
+      - name: title
+        label: Título
+        widget: string
+        required: true
+      - name: date
+        label: Data de publicação
+        widget: datetime
+        required: true
+      - name: description
+        label: Resumo
+        widget: text
+        required: false
+        hint: "Resumo explicito para cards e SEO"
+      - name: draft
+        label: Rascunho
+        widget: boolean
+        default: false
+      - name: cover
+        label: Imagem de capa
+        widget: image
+        required: false
+        hint: "Imagem de capa do Page Bundle"
+      - name: body
+        label: Conteúdo
+        widget: markdown
+        required: true
